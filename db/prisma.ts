@@ -1,7 +1,7 @@
-import { Pool, neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import { PrismaClient } from '../lib/generated/prisma';
-import ws from 'ws';
+import { Pool, neonConfig } from "@neondatabase/serverless";
+import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaClient } from "../lib/generated/prisma";
+import ws from "ws";
 
 // Sets up WebSocket connections, which enables Neon to use WebSocket communication.
 neonConfig.webSocketConstructor = ws;
@@ -18,72 +18,13 @@ export const prisma = new PrismaClient({ adapter }).$extends({
   result: {
     product: {
       price: {
-        compute(product: { price: { toString: () => any; }; }) {
+        compute(product) {
           return product.price.toString();
         },
       },
       rating: {
-        compute(product: { rating: { toString: () => any; }; }) {
+        compute(product) {
           return product.rating.toString();
-        },
-      },
-    },
-    cart: {
-      itemsPrice: {
-        needs: { itemsPrice: true },
-        compute(cart: { itemsPrice: { toString: () => any; }; }) {
-          return cart.itemsPrice.toString();
-        },
-      },
-      shippingPrice: {
-        needs: { shippingPrice: true },
-        compute(cart: { shippingPrice: { toString: () => any; }; }) {
-          return cart.shippingPrice.toString();
-        },
-      },
-      taxPrice: {
-        needs: { taxPrice: true },
-        compute(cart: { taxPrice: { toString: () => any; }; }) {
-          return cart.taxPrice.toString();
-        },
-      },
-      totalPrice: {
-        needs: { totalPrice: true },
-        compute(cart: { totalPrice: { toString: () => any; }; }) {
-          return cart.totalPrice.toString();
-        },
-      },
-    },
-    order: {
-      itemsPrice: {
-        needs: { itemsPrice: true },
-        compute(cart: { itemsPrice: { toString: () => any; }; }) {
-          return cart.itemsPrice.toString();
-        },
-      },
-      shippingPrice: {
-        needs: { shippingPrice: true },
-        compute(cart: { shippingPrice: { toString: () => any; }; }) {
-          return cart.shippingPrice.toString();
-        },
-      },
-      taxPrice: {
-        needs: { taxPrice: true },
-        compute(cart: { taxPrice: { toString: () => any; }; }) {
-          return cart.taxPrice.toString();
-        },
-      },
-      totalPrice: {
-        needs: { totalPrice: true },
-        compute(cart: { totalPrice: { toString: () => any; }; }) {
-          return cart.totalPrice.toString();
-        },
-      },
-    },
-    orderItem: {
-      price: {
-        compute(cart: { price: { toString: () => any; }; }) {
-          return cart.price.toString();
         },
       },
     },

@@ -1,16 +1,14 @@
-/* eslint-disable react/react-in-jsx-scope */
-
-import ProductList from '@/components/shared/product/product-list';
-import {getLatestProducts} from "@/lib/actions/product.action"
+import ProductList from "@/components/shared/product/product-list";
+import { getLatestProducts } from "@/lib/actions/product.action";
 
 const HomePage = async () => {
   const latestProducts = await getLatestProducts();
-  
+
   return (
-  <>
- <ProductList data={latestProducts} title='Newest Arrivals' limit={4} />
-  </>
-  ) ;
-}
- 
+    <>
+      <ProductList data={latestProducts} title="Newest Arrivals" limit={4} />
+    </>
+  );
+};
+
 export default HomePage;
