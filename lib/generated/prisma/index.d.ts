@@ -37,7 +37,11 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  * Model VerificationToken
  * 
  */
-export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
+exp
+  account: any;
+  session: any;
+  verificationToken: any;
+  user: any;ort type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
